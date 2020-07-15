@@ -29,3 +29,44 @@ class Queue:
     def dequeue(self):
         while len(self.storage) > 0:
             return self.storage.pop(0)
+
+
+class Empty_error(Exception):
+    pass
+
+
+class SLLQueue:
+    class Node:
+        def __init__(self, element, _next):
+            self.element = element
+            self._next = _next
+
+    def __init(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
+
+    def __len__(self):
+        return self.size
+
+    def is_empty(self):
+        return self.size == 0
+
+    def enqueue(self, element):
+        new = self.Node(element, None)
+        if self.is_empty():
+            self.head = new
+        else:
+            self.tail._next = new
+        self.tail = new
+        self.size += 1
+
+    def dequeue(self):
+        if self.is_empty():
+            raise Empty_error('queue is empty')
+        result = self.head.element
+        self.head = self.head._next
+        self.size -= 1
+        if self.is_empty():
+            self.tail = None
+        return result
